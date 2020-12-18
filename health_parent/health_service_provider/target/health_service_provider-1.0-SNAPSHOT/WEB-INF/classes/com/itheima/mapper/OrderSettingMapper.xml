@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.itheima.mapper.OrderSettingMapper" >
+  <resultMap id="BaseResultMap" type="com.itheima.pojo.OrderSetting" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="orderDate" property="orderDate" jdbcType="DATE" />
+    <result column="number" property="number" jdbcType="INTEGER" />
+    <result column="reservations" property="reservations" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, orderDate, number, reservations
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_ordersetting
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="findCountByOrderDate" resultType="java.lang.Integer">
+    SELECT COUNT(*) FROM t_ordersetting WHERE orderDate=#{orderDate}
+  </select>
+    <select id="selectNumberAndResv" resultType="com.itheima.pojo.OrderSetting">
+      SELECT * FROM t_ordersetting WHERE orderDate BETWEEN #{beginDate} AND #{endDate}
+    </select>
+    <select id="selectByOrderDate" resultType="com.itheima.pojo.OrderSetting">
+      SELECT * FROM t_ordersetting WHERE orderDate=#{orderDate}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_ordersetting
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.itheima.pojo.OrderSetting" >
+    insert into t_ordersetting (id, orderDate, number, 
+      reservations)
+    values (#{id,jdbcType=INTEGER}, #{orderDate,jdbcType=DATE}, #{number,jdbcType=INTEGER},
+      #{reservations,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.itheima.pojo.OrderSetting" >
+    insert into t_ordersetting
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="orderDate != null" >
+        orderDate,
+      </if>
+      <if test="number != null" >
+        number,
+      </if>
+      <if test="reservations != null" >
+        reservations,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="orderDate != null" >
+        #{orderDate,jdbcType=DATE},
+      </if>
+      <if test="number != null" >
+        #{number,jdbcType=INTEGER},
+      </if>
+      <if test="reservations != null" >
+        #{reservations,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+
+  <update id="updateByPrimaryKeySelective" parameterType="com.itheima.pojo.OrderSetting" >
+    update t_ordersetting
+    <set >
+      <if test="orderDate != null" >
+        orderDate = #{orderDate,jdbcType=DATE},
+      </if>
+      <if test="number != null" >
+        number = #{number,jdbcType=INTEGER},
+      </if>
+      <if test="reservations != null" >
+        reservations = #{reservations,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.itheima.pojo.OrderSetting" >
+    update t_ordersetting
+    set orderDate = #{orderDate,jdbcType=DATE},
+      number = #{number,jdbcType=INTEGER},
+      reservations = #{reservations,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateNumberByOrderDate">
+    UPDATE t_ordersetting set number = #{number,jdbcType=INTEGER} WHERE orderDate=#{orderDate}
+  </update>
+    <update id="updateReservationByOrderDate">
+      UPDATE t_ordersetting set reservations = reservations + 1 WHERE orderDate=#{orderDate}
+    </update>
+</mapper>

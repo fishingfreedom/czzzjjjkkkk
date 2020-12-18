@@ -1,0 +1,17 @@
+com\itheima\mapper\RoleMapper.class
+com\itheima\mapper\SetMealMapper.class
+com\itheima\mapper\CheckItemMapper.class
+com\itheima\mapper\MemberMapper.class
+com\itheima\service\OrderServiceImpl.class
+com\itheima\mapper\MenuMapper.class
+com\itheima\mapper\CheckGroupMapper.class
+com\itheima\service\UserServiceImpl.class
+com\itheima\service\SetMealServiceImpl.class
+com\itheima\mapper\OrderMapper.class
+com\itheima\service\CheckGroupServiceImpl.class
+com\itheima\mapper\OrderSettingMapper.class
+com\itheima\service\MemberServiceImpl.class
+com\itheima\mapper\PermissionMapper.class
+com\itheima\service\CheckItemServiceImpl.class
+com\itheima\mapper\UserMapper.class
+com\itheima\service\OrderSettingServiceImpl.class

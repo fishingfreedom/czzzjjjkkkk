@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.itheima.mapper.MemberMapper" >
+  <insert id="insert" parameterType="member" useGeneratedKeys="true" keyColumn="id" keyProperty="id">
+    INSERT INTO t_member VALUES (#{id},
+                                #{fileNumber},
+                                #{name},
+                                #{sex},
+                                #{idCard},
+                                #{phoneNumber},
+                                #{regTime},
+                                #{password},
+                                #{email},
+                                #{birthday},
+                                #{remark})
+  </insert>
+
+  <select id="selectByIdCard" resultType="member">
+    SELECT * FROM t_member WHERE idCard=#{idCard}
+  </select>
+    <select id="selectByPrimaryKey" resultType="member">
+        select * from t_member WHERE id=#{id}
+    </select>
+    <select id="selectByTel" resultType="member">
+        SELECT * FROM t_member WHERE phoneNumber=#{telephone}
+    </select>
+</mapper>
