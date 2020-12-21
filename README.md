@@ -12,7 +12,7 @@
 
 数据库：Mysql+redis
 
-查询工具：Mabatis
+查询工具：Mybatis
 
 前端：javascript，ElementUI,VUE
 
