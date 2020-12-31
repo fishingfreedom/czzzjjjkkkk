@@ -24,16 +24,15 @@
 
 1. 预约管理：实现了“检查项管理”条目中对数据库整一个所有已有检查项的分页展示，分页用的是mybatis自带的pagehelper，实现“查询”和“新建”按钮对数据库的操作。随后实现具体某一条检查项的“编辑”和“删除”，
 
-* 这里有一个恶心的坑，在删除指令时，使用axios.get(".../delete.do?id=" +row.id) 这样回传id是读不出来的，但是在视频里却可以，这个卡了我很久，原因我猜是版本更替的缘故
+* 这里有一个恶心的坑，在删除指令时，使用axios.get(".../delete.do?id=" +row.id) 这样回传id是读不出来的，但是在视频里却可以，这个卡了我很久，原因我猜是版本更替的缘故，这个失效了。
 
 * 具体更改方法是使用反引号然后用${}修改get(`.../delete/${row.id}.do`) 然后controller里面的的@Requsetmapping也相应加（/{id}）,最后在方法的参数前面加@Pathvariable("id").这样才能回传，数据库才能执行删除操作.编辑操作同样
 
 2. 实现检查组数据库分页展示，查询与新建，检查组包含了多个检查项，这俩数据库是一个多对多关系，通过一个t_checkgroup_checkitem里面存储各自的Id进行关联，所以这里学习了一个mybaits获取插入单表的id的方法,可以用来更新中间关系表：
  
-`<<selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
-            select LAST_INSERT_ID()
-            </selectKey>>`
-
+```<selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
+    select LAST_INSERT_ID()
+   </selectKey> ```
 
 3. 实现新增套餐setmeal，是检查组的集合，其实就是套娃，由于有图片，所以这里需要用到七牛云的云服务，定期清理用户上传了图片但没有按“确定”按钮来确认套餐的垃圾图片。具体实现方法是用redis，存储一个全部图片集合，另一个确认套餐的图片名称集合，求插值获得到垃圾图片的集合，定期进行删除。教了一下redis的基本操作。
 
