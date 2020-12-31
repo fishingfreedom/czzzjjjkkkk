@@ -8,15 +8,15 @@
 
 不过不可否认的是项目停留在工具的应用，还需要深入了解工具的实现才能说是真正理解了工具。但第一次成功还是很高兴
 
-框架：Spring Framework, Spring MVC, Spring Security
+* **框架：Spring Framework, Spring MVC, Spring Security**
 
-数据库：Mysql+redis
+* **数据库：Mysql+redis**
 
-查询工具：Mybatis
+* **查询工具：Mybatis**
 
-前端：javascript，ElementUI,VUE
+* **前端：javascript，ElementUI,VUE**
 
-分布实现：Zookeeper，Dubbo
+* **分布实现：Zookeeper，Dubbo**
 
 其实这个项目还有什么知识库管理等其他条目，但由于某马也只教到预约查询管理等，因此并没有写其他的条目。
 
