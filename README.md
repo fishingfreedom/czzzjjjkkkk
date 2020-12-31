@@ -32,8 +32,8 @@
  
 ```<selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
     select LAST_INSERT_ID()
-   </selectKey> ```
-
+   </selectKey> 
+```
 3. 实现新增套餐setmeal，是检查组的集合，其实就是套娃，由于有图片，所以这里需要用到七牛云的云服务，定期清理用户上传了图片但没有按“确定”按钮来确认套餐的垃圾图片。具体实现方法是用redis，存储一个全部图片集合，另一个确认套餐的图片名称集合，求插值获得到垃圾图片的集合，定期进行删除。教了一下redis的基本操作。
 
 
